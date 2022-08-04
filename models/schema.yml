@@ -14,3 +14,7 @@ models:
         tests:
           - accepted_values:
               values: [ 'Gaming', 'WireCutter', 'InfoService', 'Cooking','TI' ]
+      - name: bundle_type
+        description: "check for active ADA bundle subscriptions"
+        tests:
+          - ada_bundles_exist
