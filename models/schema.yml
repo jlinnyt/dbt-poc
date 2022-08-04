@@ -1,0 +1,20 @@
+
+version: 2
+
+models:
+  - name: paid_subscribers_model
+    description: "subscribers with paid subscriptions"
+    columns:
+      - name: fact_subscriber_history_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+      - name: financial_entitlement_code
+        description: "name of financial entitlement"
+        tests:
+          - accepted_values:
+              values: [ 'Gaming', 'WireCutter', 'InfoService', 'Cooking','TI' ]
+      - name: bundle_type
+        description: "check for active ADA bundle subscriptions"
+        tests:
+          - ada_bundles_exist
