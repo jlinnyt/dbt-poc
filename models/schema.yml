@@ -2,24 +2,6 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
-
-
   - name: paid_subscribers_model
     description: "subscribers with paid subscriptions"
     columns:
@@ -32,3 +14,7 @@ models:
         tests:
           - accepted_values:
               values: [ 'Gaming', 'WireCutter', 'InfoService', 'Cooking','TI' ]
+      - name: bundle_type
+        description: "check for active ADA bundle subscriptions"
+        tests:
+          - ada_bundles_exist
