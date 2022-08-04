@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: dssor-dev
+    database: nyt-dssor-dev
+    schema: dssor_audit_202103151822070000
+    tables:
+      - name: fact_subscriber_history_audit
+    freshness:
+      warn_after: {count: 1, period: day}
+    loaded_at_field: "TIMESTAMP_MILLIS(version_eff_ts)"
+
+exposures:
+  - name: daily_metrics
+    type: dashboard
+
+    depends_on:
+      - ref('emily_demo')
+      - source('dssor-dev', 'fact_subscriber_history_audit')
+
+    owner:
+      name: Emily Harms
+      email: emily.harms@nytimes.com
